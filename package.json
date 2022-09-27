@@ -1,0 +1,24 @@
+{
+  "name": "admin-web-dkp3",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.2.8",
+    "@supabase/auth-helpers-react": "^0.2.4",
+    "@supabase/supabase-js": "^1.35.7",
+    "@supabase/ui": "^0.36.5",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1"
+  }
+}
