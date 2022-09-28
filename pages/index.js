@@ -1,10 +1,9 @@
-import { Auth } from '@supabase/ui'
-import { useUser } from '@supabase/auth-helpers-react'
 import { supabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
+import { withPageAuth } from '@supabase/auth-helpers-nextjs'
+import Nav from '../components/Nav'
 
-const LoginPage = () => {
-  const { user, error } = useUser()
+export default function Home({user}) {
   const [data, setData] = useState()
 
   useEffect(() => {
@@ -12,31 +11,17 @@ const LoginPage = () => {
       const { data } = await supabaseClient.from('Kategori').select('*')
       setData(data)
     }
-    // Only run query once user is logged in.
-    if (user) loadData()
-  }, [user])
-
-  if (!user)
-    return (
-      <>
-        {error && <p>{error.message}</p>}
-        <Auth
-          supabaseClient={supabaseClient}
-          socialLayout="horizontal"
-          socialButtonSize="xlarge"
-        />
-      </>
-    )
+    loadData()
+  }, [])
 
   return (
     <>
-      <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
-      <p>user:</p>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <Nav />
+      
       <p>client-side data fetching with RLS</p>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </>
   )
 }
 
-export default LoginPage
+export const getServerSideProps = withPageAuth({ redirectTo: '/signin' })
