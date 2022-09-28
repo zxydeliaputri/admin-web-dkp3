@@ -20,14 +20,16 @@ export default function Nav() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">HOME</a>
+                <Link href="/">
+                  <a className="nav-link">HOME</a>
+                </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">INFORMASI</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">BLOG</a>
-              </li>
+              <Link href="/informasi">
+                <a className="nav-link">INFORMASI</a>
+              </Link>
+              <Link href="/blog">
+                <a className="nav-link">BLOG</a>
+              </Link>
               <li className="nav-item">
                 <a className="nav-link" onClick={signOut}>Sign Out</a>
               </li>
