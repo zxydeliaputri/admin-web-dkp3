@@ -2,6 +2,8 @@ import React from 'react'
 import { supabaseClient, withPageAuth } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Image from 'next/image'
+import Logo from "../public/logotasik.jpg"
 
 export default function Nav() {
   const router = useRouter()
@@ -13,7 +15,14 @@ export default function Nav() {
     <>
       <nav className="navbar navbar-expand-lg bg-success">
         <div className="container-fluid">
-          <a className="navbar-brand text-white" href="#">+_-DKP-_+</a>
+          <a className="navbar-brand text-white" href="#">
+            <Image
+              src={Logo}
+              width={35}
+              height={35}
+              priority
+            />
+          </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

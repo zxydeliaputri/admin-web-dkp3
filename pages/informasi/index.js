@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { supabaseClient, withPageAuth } from '@supabase/auth-helpers-nextjs'
-import Nav from '../components/Nav'
+import Nav from '../../components/Nav'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Informasi() {
     const [items, setItems] = useState([])
@@ -23,7 +24,12 @@ export default function Informasi() {
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-12'>
-                        <h1>Informasi</h1>
+                        <h1>
+                            Informasi
+                            <Link href="/informasi/tambah">
+                                <a className='btn btn-success'>Tambah</a>
+                            </Link>
+                        </h1>
                         <div className='table-responsive'>
                             <table className='table'>
                                 <thead>
@@ -39,7 +45,8 @@ export default function Informasi() {
                                         return (
                                             <tr key={i}>
                                                 <td>
-                                                    <Image
+                                                    {item.foto != "-" ? (
+                                                        <Image
                                                         src={item.foto}
                                                         width={100}
                                                         height={100}
@@ -47,6 +54,7 @@ export default function Informasi() {
                                                         alt="foto"
                                                         priority
                                                     />
+                                                    ) : "gaada fotonya"}
                                                 </td>
                                                 <td>{item.nama}</td>
                                                 <td>{item.created_at}</td>
