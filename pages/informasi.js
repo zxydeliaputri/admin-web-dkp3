@@ -31,7 +31,7 @@ export default function Informasi() {
                                         <th>FOTO</th>
                                         <th>NAMA PRODUK</th>
                                         <th>TANGGAL</th>
-                                        <th>HAPUS</th>
+                                        <th>UBAH</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +50,7 @@ export default function Informasi() {
                                                 </td>
                                                 <td>{item.nama}</td>
                                                 <td>{item.created_at}</td>
-                                                <td>tombol hapus</td>
+                                                <td>tombol ubah</td>
                                             </tr>
                                         )
                                     })}
