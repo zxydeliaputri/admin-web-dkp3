@@ -11,7 +11,7 @@ const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Edi
 
 export default function Tambah() {
   const [nama, setNama] = useState();
-  // const [foto, setFoto] = useState()
+  const [foto, setFoto] = useState();
   const [isi, setIsi] = useState();
   const [Kategori, setKategori] = useState();
 
@@ -19,9 +19,9 @@ export default function Tambah() {
     setNama(event.target.value);
   };
 
-  // const fotoStateChange = ( event ) => {
-  //     setFoto(event.target.files[0])
-  // }
+  const fotoStateChange = ( event ) => {
+    setFoto(event.target.files[0])
+  };
 
   const isiStateChange = (event) => {
     setIsi(event);
@@ -35,7 +35,7 @@ export default function Tambah() {
     event.preventDefault();
     // kita masukin ke supabase
     let deskripsi = draftToHtml(convertToRaw(isi.getCurrentContent()));
-    const { data, error } = await supabaseClient.from("Produk").insert([{ nama: nama, deskripsi: deskripsi, foto: "-", id_Kategori: Kategori }]);
+    const { data, error } = await supabaseClient.from("Produk").insert([{ nama: nama, deskripsi: deskripsi, foto: foto, id_Kategori: Kategori }]);
   };
 
   return (
@@ -53,6 +53,7 @@ export default function Tambah() {
               </h3>
               <form onSubmit={onSubmit}>
                 <input type="text" onChange={namaStateChange} placeholder="Tulis Nama Item..." className="form-control form-control-lg mb-3" />
+                <input type="text" onChange={fotoStateChange} placeholder="Pages Img URL..." className="form-control form-control-lg mb-3" />
                 {/* <input
                                 type="file"
                                 accept="image/*"

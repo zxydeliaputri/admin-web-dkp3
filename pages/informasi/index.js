@@ -4,7 +4,7 @@ import Nav from '../../components/Nav'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Informasi() {
+export default function informasi() {
     const [items, setItems] = useState([])
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function Informasi() {
                 <div className='row'>
                     <div className='col-md-12'>
                         <h1>
-                            Informasi
+                            Produk
                             <Link href="/informasi/tambah">
                                 <a className='btn btn-success'>Tambah</a>
                             </Link>
@@ -58,7 +58,11 @@ export default function Informasi() {
                                                 </td>
                                                 <td>{item.nama}</td>
                                                 <td>{item.created_at}</td>
-                                                <td>tombol ubah</td>
+                                                <td>
+                                                    <Link href="/informasi/tambah">
+                                                        <a className='btn btn-success'>Tambah</a>
+                                                    </Link>
+                                                </td>
                                             </tr>
                                         )
                                     })}

@@ -33,11 +33,11 @@ export default function Nav() {
                   <a className="nav-link">HOME</a>
                 </Link>
               </li>
-              <Link href="/informasi">
-                <a className="nav-link">INFORMASI</a>
+              <Link href="/produk">
+                <a className="nav-link">PRODUK</a>
               </Link>
-              <Link href="/blog">
-                <a className="nav-link">BLOG</a>
+              <Link href="/berita">
+                <a className="nav-link">BERITA</a>
               </Link>
               <li className="nav-item">
                 <a className="nav-link" onClick={signOut}>Sign Out</a>
