@@ -13,28 +13,31 @@ const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Edi
 export default function Tambah() {
   const [judul, setJudul] = useState();
   const [isi, setIsi] = useState();
+  const [ubahUudul, setUbahJudul] = useState();
+  const [ubahIsi, setUbahIsi] = useState();
   const router = useRouter();
   const { id } = router.query;
 
   useEffect(() => {
-    getData()
-  })
+    getData();
+  });
 
   const getData = async () => {
-    const { data, error } = await supabaseClient
-        .from("Berita")
-        .select()
-        .eq('id', id)
-    setJudul(data[0].judul)
-    setIsi(data[0].deskripsi)
-  }
+    const { data, error } = await supabaseClient.from("Berita").select().eq("id", id);
+    setJudul(data[0].judul);
+    setIsi(data[0].deskripsi);
+  };
 
   const judulStateChange = (event) => {
-    setJudul(event.target.value);
+    setUbahJudul(event.target.value);
   };
 
   const isiStateChange = (event) => {
-    setIsi(event);
+    setUbahIsi(event);
+  };
+
+  const onSubmit = async () => {
+    const { data, error } = await supabaseClient.from("Berita").update({ judul: ubahJudul, deskripsi: ubahIsi });
   };
 
   return (
@@ -45,26 +48,29 @@ export default function Tambah() {
           <div className="row">
             <div className="col-md-12">
               <h3>
-                Berita - Tambah
+                Berita - Ubah
                 <Link href="/berita">
                   <a className="btn btn-danger ms-2">Kembali</a>
                 </Link>
               </h3>
-                <input type="text" value={judul} onChange={judulStateChange} placeholder="Tulis Judul Berita..." className="form-control form-control-lg mb-3" />
+            </div>
+            <div className="col text-muted">
+              <h3>{judul}</h3>
+              <p>{isi}</p>
+            </div>
+            <div className="com-md-6">
+              <form onSubmit={onSubmit}>
+                <input type="text" onChange={judulStateChange} placeholder="Tulis Judul Berita..." className="form-control form-control-lg mb-3" />
                 {/* <input
                                 type="file"
                                 accept="image/*"
                                 onChange={fotoStateChange}
                             /> */}
-                <textarea
-                    className="form-control"
-                    onChange={isiStateChange}
-                    value={isi}
-                    rows="7"
-                ></textarea>
+                <textarea className="form-control" onChange={isiStateChange} rows="7"></textarea>
                 <button type="submit" className="btn btn-success">
                   Simpan
                 </button>
+              </form>
             </div>
           </div>
         </div>
